@@ -19,13 +19,15 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version = "2021.1.2"
+    version.set("2021.1.3")
+}
+tasks {
+    patchPluginXml {
+        changeNotes.set("""
+            Add change notes here.<br>
+            <em>most HTML tags may be used</em>        """.trimIndent())
+    }
 }
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
-}
-tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
-    changeNotes("""
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>""")
 }
