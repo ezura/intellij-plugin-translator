@@ -5,7 +5,10 @@ class TranslationAction: AnAction() {
 
     override fun update(e: AnActionEvent) {
         super.update(e)
-        e.presentation.isEnabledAndVisible = !e.presentation.text.isNullOrEmpty()
+        val editor = e.getRequiredData(CommonDataKeys.EDITOR)
+        val selectedText = editor.caretModel.primaryCaret.selectedText
+        e.presentation.isVisible = true
+        e.presentation.isEnabled = !selectedText.isNullOrBlank()
     }
 
     override fun actionPerformed(e: AnActionEvent) {
