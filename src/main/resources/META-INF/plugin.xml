@@ -18,5 +18,10 @@
 
     <actions>
         <!-- Add your actions here -->
+        <action id="work.ezura.intellij.plugin.action.translator" class="TranslationAction" text="Translate Action"
+                description="Translate selected text and show popup">
+            <add-to-group group-id="EditMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="meta T"/>
+        </action>
     </actions>
 </idea-plugin>
