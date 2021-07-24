@@ -25,7 +25,7 @@ tasks {
     patchPluginXml {
         changeNotes.set("""
             Add change notes here.<br>
-            <em>most HTML tags may be used</em>        """.trimIndent())
+            <em>most HTML tags may be used</em>""".trimIndent())
     }
 }
 tasks.getByName<Test>("test") {
