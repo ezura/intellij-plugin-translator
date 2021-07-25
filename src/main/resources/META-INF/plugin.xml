@@ -13,7 +13,15 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <applicationService
+                serviceImplementation="settings.AppSettingsState"
+        />
+        <applicationConfigurable
+                parentId="tools"
+                instance="settings.AppSettingsConfigurable"
+                id="work.ezura.intellij.plugin.cinfigure.api"
+                displayName="Translation Plugin Settings"
+        />
     </extensions>
 
     <actions>

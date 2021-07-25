@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.*
 import okhttp3.*
+import settings.AppSettingsState
 import java.io.IOException
 
 class Translator {
@@ -15,11 +16,11 @@ class Translator {
         CoroutineStart.DEFAULT
     ) {
         val client = OkHttpClient()
+        val appClientConfig = AppSettingsState.instance.apiClientConfig
         val headers = Headers.headersOf(
             "Content-Type", "application / x-www-form-urlencoded; charset = UTF-8",
-            // TODO:
-            "X-Naver-Client-Id", "",
-            "X-Naver-Client-Secret", ""
+            "X-Naver-Client-Id", appClientConfig.id,
+            "X-Naver-Client-Secret", appClientConfig.secret
         )
         val requestBody = FormBody.Builder()
             .add("text", text)
