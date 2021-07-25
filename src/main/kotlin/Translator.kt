@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper
+import kotlinx.coroutines.*
 import okhttp3.*
 import java.io.IOException
 
@@ -9,7 +10,10 @@ class Translator {
     }
 
     @Throws(IOException::class)
-    fun translate(text: String): String {
+    fun translate(text: String): Deferred<String> = GlobalScope.async(
+        Dispatchers.Default,
+        CoroutineStart.DEFAULT
+    ) {
         val client = OkHttpClient()
         val headers = Headers.headersOf(
             "Content-Type", "application / x-www-form-urlencoded; charset = UTF-8",
@@ -50,6 +54,6 @@ class Translator {
                     }
                 return@use result
             }
-        return result.getOrThrow()
+        return@async result.getOrThrow()
     }
 }

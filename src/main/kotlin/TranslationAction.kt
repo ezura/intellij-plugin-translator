@@ -5,6 +5,7 @@ import com.intellij.openapi.ui.MessageType
 import com.intellij.openapi.ui.popup.Balloon
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.ui.awt.RelativePoint
+import kotlinx.coroutines.*
 
 class TranslationAction: AnAction() {
 
@@ -27,26 +28,28 @@ class TranslationAction: AnAction() {
             .replace(Regex("(^|\n) *///?"), "")
             .replace("\n", " ")
 
+        runBlocking {
+            // TODO: execute on background
+            val translatedText = Translator().translate(translationTarget).await()
 
-        val translatedText = Translator().translate(translationTarget)
+            if (selectedText != caret.selectedText) return@runBlocking
 
-        if (selectedText != caret.selectedText) return
+            val actualPosition = editor.visualPositionToXY(visualPosition)
+                .also {
+                    val editorContentPosition = editor.contentComponent.locationOnScreen
+                    it.translate(
+                        editorContentPosition.x,
+                        editorContentPosition.y + editor.lineHeight
+                    )
+                }
 
-        val actualPosition = editor.visualPositionToXY(visualPosition)
-            .also {
-                val editorContentPosition = editor.contentComponent.locationOnScreen
-                it.translate(
-                    editorContentPosition.x,
-                    editorContentPosition.y + editor.lineHeight
+            JBPopupFactory.getInstance()
+                .createHtmlTextBalloonBuilder(translatedText, MessageType.INFO, null)
+                .createBalloon()
+                .show(
+                    RelativePoint.fromScreen(actualPosition),
+                    Balloon.Position.below
                 )
-            }
-
-        JBPopupFactory.getInstance()
-            .createHtmlTextBalloonBuilder(translatedText, MessageType.INFO, null)
-            .createBalloon()
-            .show(
-                RelativePoint.fromScreen(actualPosition),
-                Balloon.Position.below
-            )
+        }
     }
 }
