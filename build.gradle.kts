@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "work.ezura"
-version = "1.0"
+version = "0.9"
 
 repositories {
     mavenCentral()
@@ -25,9 +25,11 @@ intellij {
 }
 tasks {
     patchPluginXml {
-        changeNotes.set("""
-            Add change notes here.<br>
-            <em>most HTML tags may be used</em>""".trimIndent())
+        changeNotes.set(
+            """
+            Add a feature to translate selected text. (ko -> ja)
+            """
+            .trimIndent())
     }
 }
 tasks.getByName<Test>("test") {
