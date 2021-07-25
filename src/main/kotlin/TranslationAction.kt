@@ -27,11 +27,11 @@ class TranslationAction: AnAction() {
             .replace(Regex("(^|\n) *///?"), "")
             .replace("\n", " ")
 
-        // TODO: Call a translate API.
-        val translatedText = translationTarget
+
+        val translatedText = Translator().translate(translationTarget)
 
         if (selectedText != caret.selectedText) return
-        
+
         val actualPosition = editor.visualPositionToXY(visualPosition)
             .also {
                 val editorContentPosition = editor.contentComponent.locationOnScreen
