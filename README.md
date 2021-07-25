@@ -13,7 +13,7 @@ Translate selected text with [papago API](https://developers.naver.com/docs/papa
   1. You can get API client ID and secrent.
 1. Open IntelliJ preference > Tools > Translation Plugin Settings
 1. Set API client ID and secrent of Naver Open API.</br><img width="700" alt="setting screen" src="https://user-images.githubusercontent.com/2020337/126896580-2c250091-3d8d-45a2-9c4d-4c25d4571c88.png">
-1. Now ready to use this plugin!
+1. Now you're ready to use this plugin!
 1. Select a text you want to translate and type "alt + T", then you can get the translated text.
 
 # Loadmap
