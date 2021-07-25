@@ -1,31 +1,27 @@
 package settings
 
-import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBTextField
 import com.intellij.util.ui.FormBuilder
-import javax.swing.BorderFactory
 import javax.swing.JComponent
 import javax.swing.JPanel
 
 class AppSettingsComponent {
     val panel: JPanel
-    private val apiClientTextField = JBTextField()
+    private val apiClientIdTextField = JBTextField()
     private val apiSecretTextField = JBTextField()
 
     val preferredFocusedComponent: JComponent
-        get() = apiClientTextField
+        get() = apiClientIdTextField
 
-    var apiClientText: String
-        get() = apiClientTextField.text
-        set(newText) {
-            apiClientTextField.text = newText
-        }
-
-    var apiSecretText: String
-        get() = apiSecretTextField.text
-        set(newText) {
-            apiSecretTextField.text = newText
+    var apiClientConfig: AppSettingsState.ApiClientConfig
+        get() = AppSettingsState.ApiClientConfig(
+            id = apiClientIdTextField.text,
+            secret = apiSecretTextField.text
+        )
+        set(newValue) {
+            apiClientIdTextField.text = newValue.id
+            apiSecretTextField.text = newValue.secret
         }
 
     init {
@@ -37,7 +33,7 @@ class AppSettingsComponent {
             )
             .addLabeledComponent(
                 JBLabel("API client ID: "),
-                apiClientTextField,
+                apiClientIdTextField,
                 1,
                 false
             )

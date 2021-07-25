@@ -8,7 +8,7 @@ class AppSettingsConfigurable : Configurable {
     private var settingsComponent: AppSettingsComponent? = null
 
     @Nls(capitalization = Nls.Capitalization.Title)
-    override fun getDisplayName(): String  = "Plugin: Translation Plugin"
+    override fun getDisplayName(): String  = "Translation Plugin"
 
     override fun getPreferredFocusedComponent(): JComponent =
         settingsComponent!!.preferredFocusedComponent
@@ -20,21 +20,18 @@ class AppSettingsConfigurable : Configurable {
 
     override fun isModified(): Boolean {
         val currentSettings = AppSettingsState.instance
-        // TODO: Data class
-        return !currentSettings.client.equals(settingsComponent!!.apiClientText) ||
-                !currentSettings.secret.equals(settingsComponent!!.apiSecretText)
+        val apiClientConfig = settingsComponent!!.apiClientConfig
+        return currentSettings.apiClientConfig != apiClientConfig
     }
 
     override fun apply() {
-        val settings: AppSettingsState = AppSettingsState.instance
-        settings.client = settingsComponent!!.apiClientText
-        settings.secret = settingsComponent!!.apiSecretText
+        val settings = AppSettingsState.instance
+        settings.apiClientConfig = settingsComponent!!.apiClientConfig
     }
 
     override fun reset() {
-        val settings: AppSettingsState = AppSettingsState.instance
-        settingsComponent!!.apiClientText = settings.client
-        settingsComponent!!.apiSecretText = settings.secret
+        val settings = AppSettingsState.instance
+        settingsComponent!!.apiClientConfig = settings.apiClientConfig
     }
 
     override fun disposeUIResources() {
