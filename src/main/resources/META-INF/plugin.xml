@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>work.ezura.intellij-plugin-translator</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <name>Translator</name>
+    <vendor email="yuka.ezura@gmail.com" url="">ezura</vendor>
 
     <description><![CDATA[
     Enter short description for your plugin here.<br>
@@ -18,10 +18,10 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="work.ezura.intellij.plugin.action.translator" class="TranslationAction" text="Translate Action"
-                description="Translate selected text and show popup">
+        <action id="work.ezura.intellij.plugin.action.translator" class="TranslationAction" text="Translate Text"
+                description="Translate selected text and show balloon">
             <add-to-group group-id="EditMenu" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="meta T"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt T"/>
         </action>
     </actions>
 </idea-plugin>
