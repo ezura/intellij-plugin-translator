@@ -20,8 +20,8 @@ class TranslationAction: AnAction() {
         val editor = e.getRequiredData(CommonDataKeys.EDITOR)
         val caret = editor.caretModel.primaryCaret
         val visualPosition = caret.selectionEndPosition
-        val selectedText = caret.selectedText ?: ""
-        val translationTarget = selectedText
+        val selectedText = caret.selectedText
+        val translationTarget = (selectedText ?: "")
             // For multiline comments, remove "//", "///" at line start.
             // "/* ... */" doesn't interfere with the translation, so only remove linebreaks.
             .replace(Regex("(^|\n) *///?"), "")
@@ -29,7 +29,9 @@ class TranslationAction: AnAction() {
 
         // TODO: Call a translate API.
         val translatedText = translationTarget
-        // TODO: Cancel the action if the selected text has been changed.
+
+        if (selectedText != caret.selectedText) return
+        
         val actualPosition = editor.visualPositionToXY(visualPosition)
             .also {
                 val editorContentPosition = editor.contentComponent.locationOnScreen
