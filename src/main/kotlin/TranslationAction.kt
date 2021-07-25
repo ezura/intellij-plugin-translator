@@ -20,9 +20,15 @@ class TranslationAction: AnAction() {
         val editor = e.getRequiredData(CommonDataKeys.EDITOR)
         val caret = editor.caretModel.primaryCaret
         val visualPosition = caret.selectionEndPosition
-        // TODO: trim line break and "//"
         val selectedText = caret.selectedText ?: ""
-        // TODO: Call a translate API
+        val translationTarget = selectedText
+            // For multiline comments, remove "//", "///" at line start.
+            // "/* ... */" doesn't interfere with the translation, so only remove linebreaks.
+            .replace(Regex("(^|\n) *///?"), "")
+            .replace("\n", " ")
+
+        // TODO: Call a translate API.
+        val translatedText = translationTarget
         // TODO: Cancel the action if the selected text has been changed.
         val actualPosition = editor.visualPositionToXY(visualPosition)
             .also {
@@ -34,7 +40,7 @@ class TranslationAction: AnAction() {
             }
 
         JBPopupFactory.getInstance()
-            .createHtmlTextBalloonBuilder(selectedText, MessageType.INFO, null)
+            .createHtmlTextBalloonBuilder(translatedText, MessageType.INFO, null)
             .createBalloon()
             .show(
                 RelativePoint.fromScreen(actualPosition),
