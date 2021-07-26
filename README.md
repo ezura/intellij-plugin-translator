@@ -7,7 +7,7 @@ Translate selected text with [papago API](https://developers.naver.com/docs/papa
 1. Download zip file(intellij-plugin-translator-x.x.zip
 ) from [Release note](https://github.com/ezura/intellij-plugin-translator/releases).
 1. Open your Intellij IDE.
-1. Select Plugin > settings icon > Install Plugin from Disk...
+1. Select: Plugin > settings icon > Install Plugin from Disk...
 1. Select the downloaded zip file.
 
 # Getting start
