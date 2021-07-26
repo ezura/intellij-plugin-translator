@@ -19,5 +19,5 @@ Translate selected text with [papago API](https://developers.naver.com/docs/papa
 1. Select a text you want to translate and type "alt + T", then you can get the translated text.
 
 # Loadmap
-* support more languages (English, Chinese, ...)
-* support language detection
+* [x] support more languages (English, Chinese, ...)
+* [ ] support language detection
