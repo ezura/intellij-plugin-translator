@@ -20,8 +20,8 @@ class AppSettingsComponent {
     val preferredFocusedComponent: JComponent
         get() = apiClientIdTextField
 
-    var apiClientConfig: AppSettingsState.ApiClientConfig
-        get() = AppSettingsState.ApiClientConfig(
+    var apiClientSettings: AppSettingsState.ApiClientSettings
+        get() = AppSettingsState.ApiClientSettings(
             id = apiClientIdTextField.text,
             secret = apiSecretTextField.text
         )

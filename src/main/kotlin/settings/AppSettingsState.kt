@@ -19,16 +19,16 @@ import kotlinx.serialization.json.Json
 class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
 
     @Serializable
-    data class ApiClientConfig(
+    data class ApiClientSettings(
         var id: String = "",
         var secret: String = ""
     )
 
-    class ApiConfigConverter : Converter<ApiClientConfig?>() {
-        override fun fromString(value: String): ApiClientConfig =
+    class ApiClientSettingsConverter : Converter<ApiClientSettings?>() {
+        override fun fromString(value: String): ApiClientSettings =
             Json.decodeFromString(value)
 
-        override fun toString(value: ApiClientConfig): String =
+        override fun toString(value: ApiClientSettings): String =
             Json.encodeToString(value)
     }
 
@@ -53,8 +53,8 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
             get() = ApplicationManager.getApplication().getService(AppSettingsState::class.java)
     }
 
-    @OptionTag(converter = ApiConfigConverter::class)
-    var apiClientConfig = ApiClientConfig()
+    @OptionTag(converter = ApiClientSettingsConverter::class)
+    var apiClientSettings = ApiClientSettings()
     @OptionTag(converter = LanguageSettingsConverter::class)
     var languageSettings = LanguageSettings()
 

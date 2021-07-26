@@ -19,8 +19,8 @@ class Translator {
         val appSettingsState = AppSettingsState.instance
         val headers = Headers.headersOf(
             "Content-Type", "application / x-www-form-urlencoded; charset = UTF-8",
-            "X-Naver-Client-Id", appSettingsState.apiClientConfig.id,
-            "X-Naver-Client-Secret", appSettingsState.apiClientConfig.secret
+            "X-Naver-Client-Id", appSettingsState.apiClientSettings.id,
+            "X-Naver-Client-Secret", appSettingsState.apiClientSettings.secret
         )
         // TODO: Execute language detection when `isEnabledLanguageDetection` is `true`.
         val requestBody = FormBody.Builder()

@@ -20,19 +20,19 @@ class AppSettingsConfigurable : Configurable {
 
     override fun isModified(): Boolean {
         val currentSettings = AppSettingsState.instance
-        return currentSettings.apiClientConfig != settingsComponent!!.apiClientConfig
+        return currentSettings.apiClientSettings != settingsComponent!!.apiClientSettings
                 || currentSettings.languageSettings != settingsComponent!!.languageSettings
     }
 
     override fun apply() {
         val settings = AppSettingsState.instance
-        settings.apiClientConfig = settingsComponent!!.apiClientConfig
+        settings.apiClientSettings = settingsComponent!!.apiClientSettings
         settings.languageSettings = settingsComponent!!.languageSettings
     }
 
     override fun reset() {
         val settings = AppSettingsState.instance
-        settingsComponent!!.apiClientConfig = settings.apiClientConfig
+        settingsComponent!!.apiClientSettings = settings.apiClientSettings
         settingsComponent!!.languageSettings = settings.languageSettings
     }
 
