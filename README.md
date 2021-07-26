@@ -3,6 +3,13 @@ Translate selected text with [papago API](https://developers.naver.com/docs/papa
 
 <img width="513" alt="sample" src="https://user-images.githubusercontent.com/2020337/126896587-6f06404d-9372-4001-8f78-fdc5a6e69a83.png">
 
+# How to install
+1. Download zip file(intellij-plugin-translator-x.x.zip
+) from [Release note](https://github.com/ezura/intellij-plugin-translator/releases).
+1. Open your Intellij IDE.
+1. Select Plugin > settings icon > Install Plugin from Disk...
+1. Select the downloaded zip file.
+
 # Getting start
 1. Get API client ID and secrent of Naver Open API.
   1. Register Application at https://developers.naver.com/apps/#/list .
