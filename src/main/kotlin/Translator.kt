@@ -16,16 +16,17 @@ class Translator {
         CoroutineStart.DEFAULT
     ) {
         val client = OkHttpClient()
-        val appClientConfig = AppSettingsState.instance.apiClientConfig
+        val appSettingsState = AppSettingsState.instance
         val headers = Headers.headersOf(
             "Content-Type", "application / x-www-form-urlencoded; charset = UTF-8",
-            "X-Naver-Client-Id", appClientConfig.id,
-            "X-Naver-Client-Secret", appClientConfig.secret
+            "X-Naver-Client-Id", appSettingsState.apiClientConfig.id,
+            "X-Naver-Client-Secret", appSettingsState.apiClientConfig.secret
         )
+        // TODO: Execute language detection when `isEnabledLanguageDetection` is `true`.
         val requestBody = FormBody.Builder()
             .add("text", text)
-            .add("source", "ko")
-            .add("target", "ja")
+            .add("source", appSettingsState.languageSettings.defaultSourceLanguage)
+            .add("target", appSettingsState.languageSettings.targetLanguage)
             .build()
 
         val request = Request.Builder()

@@ -32,6 +32,22 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
             Json.encodeToString(value)
     }
 
+    @Serializable
+    data class LanguageSettings(
+        var targetLanguage: String = "en",
+        // TODO: Move to setting file for each project.
+        var defaultSourceLanguage: String = "ko",
+        var isEnabledLanguageDetection: Boolean = false
+    )
+
+    class LanguageSettingsConverter : Converter<LanguageSettings?>() {
+        override fun fromString(value: String): LanguageSettings =
+            Json.decodeFromString(value)
+
+        override fun toString(value: LanguageSettings): String =
+            Json.encodeToString(value)
+    }
+
     companion object {
         val instance: AppSettingsState
             get() = ApplicationManager.getApplication().getService(AppSettingsState::class.java)
@@ -39,6 +55,8 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
 
     @OptionTag(converter = ApiConfigConverter::class)
     var apiClientConfig = ApiClientConfig()
+    @OptionTag(converter = LanguageSettingsConverter::class)
+    var languageSettings = LanguageSettings()
 
     override fun getState(): AppSettingsState = this
 
