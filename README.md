@@ -21,10 +21,10 @@ Translate selected text with [papago API](https://developers.naver.com/docs/papa
 1. Open IntelliJ preference > Tools > Translation Plugin Settings
 1. Set API client ID and secret of Naver Open API.
 1. Set language settings. You can see selectable languages at [Papago translation API reference](https://developers.naver.com/docs/papago/papago-nmt-api-reference.md).
-   </br><img width="700" alt="setting screen" src="https://user-images.githubusercontent.com/2020337/126918190-ce0c9780-87c5-43d9-833a-f3e63e2c06ea.png">
+   </br><img width="700" alt="setting screen" src="https://user-images.githubusercontent.com/2020337/127078602-515cd04b-1165-452d-a971-3a18dd04e217.png">
 1. Now you're ready to use this plugin!
 1. Select a text you want to translate and type "alt + T", then you can get the translated text.
 
 # Loadmap
 * [x] support more languages (English, Chinese, ...)
-* [ ] support language detection
+* [x] support language detection
