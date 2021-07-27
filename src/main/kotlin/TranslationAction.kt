@@ -30,7 +30,7 @@ class TranslationAction: AnAction() {
 
         runBlocking {
             // TODO: execute on background
-            val translatedText = Translator().translate(translationTarget).await()
+            val translatedText = Translator().translateAsync(translationTarget).await()
 
             if (selectedText != caret.selectedText) return@runBlocking
 

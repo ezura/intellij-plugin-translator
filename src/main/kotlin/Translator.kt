@@ -4,24 +4,30 @@ import okhttp3.*
 import settings.AppSettingsState
 import java.io.IOException
 
-class Translator {
+class Translator(
+    private val appSettingsState: AppSettingsState = AppSettingsState.instance
+) {
 
     companion object {
-        const val papagoURL = "https://openapi.naver.com/v1/papago/n2mt"
+        const val papagoTranslationURL = "https://openapi.naver.com/v1/papago/n2mt"
     }
 
+    private val client = OkHttpClient()
+    private val naverApiBaseHeaders: Headers
+        get() {
+            Headers.headersOf(
+                "Content-Type", "application / x-www-form-urlencoded; charset = UTF-8",
+                "X-Naver-Client-Id", appSettingsState.apiClientSettings.id,
+                "X-Naver-Client-Secret", appSettingsState.apiClientSettings.secret
+            )
+        }
+
     @Throws(IOException::class)
-    fun translate(text: String): Deferred<String> = GlobalScope.async(
+    fun translateAsync(text: String): Deferred<String> = GlobalScope.async(
         Dispatchers.Default,
         CoroutineStart.DEFAULT
     ) {
-        val client = OkHttpClient()
-        val appSettingsState = AppSettingsState.instance
-        val headers = Headers.headersOf(
-            "Content-Type", "application / x-www-form-urlencoded; charset = UTF-8",
-            "X-Naver-Client-Id", appSettingsState.apiClientSettings.id,
-            "X-Naver-Client-Secret", appSettingsState.apiClientSettings.secret
-        )
+        val headers = naverApiBaseHeaders
         // TODO: Execute language detection when `isEnabledLanguageDetection` is `true`.
         val requestBody = FormBody.Builder()
             .add("text", text)
@@ -30,7 +36,7 @@ class Translator {
             .build()
 
         val request = Request.Builder()
-            .url(papagoURL)
+            .url(papagoTranslationURL)
             .headers(headers)
             .post(requestBody)
             .build()
