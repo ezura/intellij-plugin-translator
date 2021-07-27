@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "work.ezura"
-version = "0.9"
+version = "1.0"
 
 repositories {
     mavenCentral()
@@ -29,7 +29,7 @@ tasks {
     patchPluginXml {
         changeNotes.set(
             """
-            Add a feature to translate selected text. (ko -> ja)
+            Add a feature to detect source language.
             """
             .trimIndent())
     }

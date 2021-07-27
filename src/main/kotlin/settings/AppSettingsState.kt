@@ -37,7 +37,7 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
         var targetLanguage: String = "en",
         // TODO: Move to setting file for each project.
         var defaultSourceLanguage: String = "ko",
-        var isEnabledLanguageDetection: Boolean = false
+        var isEnabledLanguageDetection: Boolean = true
     )
 
     class LanguageSettingsConverter : Converter<LanguageSettings?>() {

@@ -82,7 +82,7 @@ class AppSettingsComponent {
                 false
             )
             .addLabeledComponent(
-                JBLabel("Enable languageDetection(not implemented yet): "),
+                JBLabel("Enable language detection: "),
                 isEnabledLanguageDetectionCheckBox,
                 1,
                 false
