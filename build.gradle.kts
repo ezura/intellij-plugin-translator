@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "work.ezura"
-version = "1.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -24,6 +24,7 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version.set("2021.1.3")
+    updateSinceUntilBuild.set(false)
 }
 tasks {
     patchPluginXml {
