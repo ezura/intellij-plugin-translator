@@ -30,6 +30,15 @@ class Translator(
         Dispatchers.Default,
         CoroutineStart.DEFAULT
     ) {
+        if (appSettingsState.apiClientSettings.secret.isBlank() || appSettingsState.apiClientSettings.id.isBlank()) {
+            throw IOException(
+                """
+                Invalid API Client settings:
+                You can get the way to set them up <a href="https://github.com/ezura/intellij-plugin-translator#getting-start">here</a>.
+                """.trimIndent()
+            )
+        }
+
         val sourceLangCode: String =
             if (appSettingsState.languageSettings.isEnabledLanguageDetection)
                 try {
