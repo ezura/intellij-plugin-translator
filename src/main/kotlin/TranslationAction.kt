@@ -30,7 +30,9 @@ class TranslationAction: AnAction() {
 
         runBlocking {
             // TODO: execute on background
-            val translatedText = Translator().translateAsync(translationTarget).await()
+            val translationResult = runCatching {
+                Translator().translateAsync(translationTarget).await()
+            }
 
             if (selectedText != caret.selectedText) return@runBlocking
 
@@ -44,7 +46,12 @@ class TranslationAction: AnAction() {
                 }
 
             JBPopupFactory.getInstance()
-                .createHtmlTextBalloonBuilder(translatedText, MessageType.INFO, null)
+                .let { factory ->
+                    translationResult.fold(
+                        { factory.createHtmlTextBalloonBuilder(it, MessageType.INFO, null) },
+                        { factory.createHtmlTextBalloonBuilder(it.localizedMessage, MessageType.ERROR, null) }
+                    )
+                }
                 .createBalloon()
                 .show(
                     RelativePoint.fromScreen(actualPosition),
