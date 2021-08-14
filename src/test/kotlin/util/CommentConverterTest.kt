@@ -69,7 +69,7 @@ class CommentConverterTest: BehaviorSpec({
                     /// this is second line and
                     /// this is third line."""
                 val result = converter.extractTextFromComment(comment)
-                Then("Remove \"// \"") {
+                Then("Remove \"/// \"") {
                     result shouldBe " This is first line, this is second line and this is third line."
                 }
             }
