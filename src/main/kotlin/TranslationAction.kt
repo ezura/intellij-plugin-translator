@@ -8,10 +8,13 @@ import com.intellij.openapi.ui.popup.Balloon
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.ui.awt.RelativePoint
 import kotlinx.coroutines.*
+import util.CommentConverter
 import javax.swing.event.HyperlinkEvent
 import javax.swing.event.HyperlinkListener
 
-class TranslationAction: AnAction() {
+class TranslationAction(
+    private val commentConverter: CommentConverter = CommentConverter()
+): AnAction() {
 
     override fun update(e: AnActionEvent) {
         super.update(e)
@@ -26,11 +29,7 @@ class TranslationAction: AnAction() {
         val caret = editor.caretModel.primaryCaret
         val visualPosition = caret.selectionEndPosition
         val selectedText = caret.selectedText
-        val translationTarget = (selectedText ?: "")
-            // For multiline comments, remove "//", "///" at line start.
-            // "/* ... */" doesn't interfere with the translation, so only remove linebreaks.
-            .replace(Regex("(^|\n) *///?"), "")
-            .replace("\n", " ")
+        val translationTarget = commentConverter.extractTextFromComment(selectedText ?: "")
 
         runBlocking {
             // TODO: execute on background
