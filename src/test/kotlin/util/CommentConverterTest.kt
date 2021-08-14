@@ -74,5 +74,39 @@ class CommentConverterTest: BehaviorSpec({
                 }
             }
         }
+
+        And("In /* ... */") {
+            When("single line comment") {
+                val comment = "/* This is a single line comment. */"
+                val result = converter.extractTextFromComment(comment)
+                Then("do nothing") {
+                    result shouldBe "/* This is a single line comment. */"
+                }
+            }
+
+            When("multiple lines with *") {
+                val comment =
+                    """/*
+                        * This is first line and
+                        * this is second line.
+                        */"""
+                val result = converter.extractTextFromComment(comment)
+                Then("Remove \"*\"") {
+                    result shouldBe "/* This is first line and this is second line./"
+                }
+            }
+
+            When("multiple lines without *") {
+                val comment =
+                    """/* 
+                          This is first line and
+                          this is second line.
+                       */"""
+                val result = converter.extractTextFromComment(comment)
+                Then("Remove \"*\"") {
+                    result shouldBe "/* This is first line and this is second line./"
+                }
+            }
+        }
     }
 })
