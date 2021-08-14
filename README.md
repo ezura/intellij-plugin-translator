@@ -1,4 +1,6 @@
 # intellij-plugin-translator
+[![CircleCI](https://circleci.com/gh/ezura/intellij-plugin-translator.svg?style=svg)](https://app.circleci.com/pipelines/github/ezura/intellij-plugin-translator)
+
 Translate selected text with [papago API](https://developers.naver.com/docs/papago/papago-detectlangs-overview.md).
 
 <img width="513" alt="sample" src="https://user-images.githubusercontent.com/2020337/126896587-6f06404d-9372-4001-8f78-fdc5a6e69a83.png">
