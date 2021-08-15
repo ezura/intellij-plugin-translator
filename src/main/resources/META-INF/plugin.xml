@@ -51,7 +51,7 @@
         <applicationConfigurable
                 parentId="tools"
                 instance="settings.AppSettingsConfigurable"
-                id="work.ezura.intellij.plugin.cinfigure.api"
+                id="work.ezura.intellij.plugin.configure.api"
                 displayName="Translation Plugin Settings"
         />
     </extensions>
