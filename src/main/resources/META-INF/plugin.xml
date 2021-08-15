@@ -1,13 +1,41 @@
 <idea-plugin>
     <id>work.ezura.intellij-plugin-translator</id>
-    <name>Translator</name>
+    <name>Text Translator</name>
     <vendor email="yuka.ezura@gmail.com"
             url="https://github.com/ezura/intellij-plugin-translator">
         ezura
     </vendor>
 
     <description>
-        Translate selected text with Papago translation API.
+        <![CDATA[
+            <p>Translate selected text with <a href="https://developers.naver.com/docs/papago/papago-detectlangs-overview.md" rel="nofollow">papago API</a>.</p>
+            <p><a target="_blank" rel="noopener noreferrer" href="https://user-images.githubusercontent.com/2020337/126896587-6f06404d-9372-4001-8f78-fdc5a6e69a83.png"><img width="513" alt="sample" src="https://user-images.githubusercontent.com/2020337/126896587-6f06404d-9372-4001-8f78-fdc5a6e69a83.png" style="max-width:100%;"></a></p>
+            <h1>Getting start</h1>
+            <ol>
+               <li>
+                  Get API client ID and secret of Naver Open API.
+                  <ol>
+                     <li>Register Application at <a href="https://developers.naver.com/apps/#/list" rel="nofollow">https://developers.naver.com/apps/#/list</a>.</li>
+                     <li>
+                        Select the below APIs.
+                        <ul>
+                           <li>Papago translation</li>
+                           <li>Papago language detection</li>
+                        </ul>
+                     </li>
+                     <li>Click the "Register" button.</li>
+                     <li>You can get an API client ID and secret.</li>
+                  </ol>
+               </li>
+               <li>Open IntelliJ preference &gt; Tools &gt; Translation Plugin Settings</li>
+               <li>Set the API client ID and the secret of Naver Open API.</li>
+               <li>Set language settings. You can see selectable languages at <a href="https://developers.naver.com/docs/papago/papago-nmt-api-reference.md" rel="nofollow">Papago translation API reference</a>.
+                  <br><a target="_blank" rel="noopener noreferrer" href="https://user-images.githubusercontent.com/2020337/127078602-515cd04b-1165-452d-a971-3a18dd04e217.png"><img width="700" alt="setting screen" src="https://user-images.githubusercontent.com/2020337/127078602-515cd04b-1165-452d-a971-3a18dd04e217.png" style="max-width:100%;"></a>
+               </li>
+               <li>Now you're ready to use this plugin!</li>
+               <li>Select a text you want to translate and type "alt + T", then you can get the translated text.</li>
+            </ol>
+        ]]>
     </description>
 
     <idea-version since-build="203" />

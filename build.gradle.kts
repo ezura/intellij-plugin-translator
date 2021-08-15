@@ -30,11 +30,6 @@ intellij {
 }
 tasks {
     patchPluginXml {
-        changeNotes.set(
-            """
-            Add a feature to detect source language.
-            """
-            .trimIndent())
     }
 }
 tasks.getByName<Test>("test") {
