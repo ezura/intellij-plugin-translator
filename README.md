@@ -6,6 +6,10 @@ Translate selected text with [papago API](https://developers.naver.com/docs/papa
 <img width="513" alt="sample" src="https://user-images.githubusercontent.com/2020337/126896587-6f06404d-9372-4001-8f78-fdc5a6e69a83.png">
 
 # How to install
+## install from marketplace
+https://plugins.jetbrains.com/plugin/17429-text-translator
+
+## install from zip file
 1. Download zip file(intellij-plugin-translator-x.x.zip
 ) from [Release note](https://github.com/ezura/intellij-plugin-translator/releases).
 1. Open your Intellij IDE.
